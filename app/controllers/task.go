@@ -1,11 +1,11 @@
 package controllers
 
 import (
+	"github.com/SuperDsj/webcron/app/jobs"
+	"github.com/SuperDsj/webcron/app/libs"
+	"github.com/SuperDsj/webcron/app/models"
 	"github.com/astaxie/beego"
 	libcron "github.com/lisijie/cron"
-	"github.com/lisijie/webcron/app/jobs"
-	"github.com/lisijie/webcron/app/libs"
-	"github.com/lisijie/webcron/app/models"
 	"strconv"
 	"strings"
 	"time"

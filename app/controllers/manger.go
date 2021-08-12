@@ -8,11 +8,11 @@ import (
 	"strings"
 )
 
-type GroupController struct {
+type MangerController struct {
 	BaseController
 }
 
-func (this *GroupController) List() {
+func (this *MangerController) List() {
 	page, _ := this.GetInt("page")
 	if page < 1 {
 		page = 1
@@ -22,11 +22,11 @@ func (this *GroupController) List() {
 
 	this.Data["pageTitle"] = "分组列表"
 	this.Data["list"] = list
-	this.Data["pageBar"] = libs.NewPager(page, int(count), this.pageSize, beego.URLFor("GroupController.List"), true).ToString()
+	this.Data["pageBar"] = libs.NewPager(page, int(count), this.pageSize, beego.URLFor("MangerController.List"), true).ToString()
 	this.display()
 }
 
-func (this *GroupController) Add() {
+func (this *MangerController) Add() {
 	if this.isPost() {
 		group := new(models.TaskGroup)
 		group.GroupName = strings.TrimSpace(this.GetString("group_name"))
@@ -44,7 +44,7 @@ func (this *GroupController) Add() {
 	this.display()
 }
 
-func (this *GroupController) Edit() {
+func (this *MangerController) Edit() {
 	id, _ := this.GetInt("id")
 
 	group, err := models.TaskGroupGetById(id)
@@ -67,7 +67,7 @@ func (this *GroupController) Edit() {
 	this.display()
 }
 
-func (this *GroupController) Batch() {
+func (this *MangerController) Batch() {
 	action := this.GetString("action")
 	ids := this.GetStrings("ids")
 	if len(ids) < 1 {

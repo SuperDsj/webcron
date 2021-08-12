@@ -75,6 +75,12 @@
 						<span>分组管理</span>
 					</a>  									
 				</li>
+				<li {{if eq .curController "manger"}}class="active"{{end}}>
+				<a href="/manger/list">
+					<i class="icon-folder-close"></i>
+					<span>Manger管理</span>
+				</a>
+				</li>
 				<li {{if eq .curController "help"}}class="active"{{end}}>					
 					<a href="/help">
 						<i class="icon-question-sign"></i>

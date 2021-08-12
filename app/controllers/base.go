@@ -1,9 +1,9 @@
 package controllers
 
 import (
+	"github.com/SuperDsj/webcron/app/libs"
+	"github.com/SuperDsj/webcron/app/models"
 	"github.com/astaxie/beego"
-	"github.com/lisijie/webcron/app/libs"
-	"github.com/lisijie/webcron/app/models"
 	"strconv"
 	"strings"
 )

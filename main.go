@@ -2,10 +2,10 @@ package main
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/lisijie/webcron/app/controllers"
-	"github.com/lisijie/webcron/app/jobs"
-	_ "github.com/lisijie/webcron/app/mail"
-	"github.com/lisijie/webcron/app/models"
+	"github.com/SuperDsj/webcron/app/controllers"
+	"github.com/SuperDsj/webcron/app/jobs"
+	_ "github.com/SuperDsj/webcron/app/mail"
+	"github.com/SuperDsj/webcron/app/models"
 	"html/template"
 	"net/http"
 )
@@ -38,6 +38,7 @@ func main() {
 	beego.Router("/gettime", &controllers.MainController{}, "*:GetTime")
 	beego.Router("/help", &controllers.HelpController{}, "*:Index")
 	beego.AutoRouter(&controllers.TaskController{})
+	beego.AutoRouter(&controllers.GroupController{})
 	beego.AutoRouter(&controllers.GroupController{})
 
 	beego.BConfig.WebConfig.Session.SessionOn = true
