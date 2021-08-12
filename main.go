@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/astaxie/beego"
 	"github.com/SuperDsj/webcron/app/controllers"
 	"github.com/SuperDsj/webcron/app/jobs"
 	_ "github.com/SuperDsj/webcron/app/mail"
 	"github.com/SuperDsj/webcron/app/models"
+	"github.com/astaxie/beego"
 	"html/template"
 	"net/http"
 )
