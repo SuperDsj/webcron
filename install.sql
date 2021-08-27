@@ -30,6 +30,20 @@ CREATE TABLE `t_task_group` (
   KEY `idx_user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `t_task_manger` (
+    `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户ID',
+    `manger_name` varchar(50) NOT NULL DEFAULT '' COMMENT '组名',
+    `inbound_type` varchar(50) NOT NULL DEFAULT '' COMMENT '运营商',
+    `inbound_name` varchar(50) NOT NULL DEFAULT '' COMMENT '400号码',
+    `inbound_local` varchar(50) NOT NULL DEFAULT '' COMMENT '落地号码',
+    `inbound_sip` varchar(50) NOT NULL DEFAULT '' COMMENT 'sip指向',
+    `inbound_fs` varchar(50) NOT NULL DEFAULT '' COMMENT 'freeswitch节点',
+    `description` varchar(255) NOT NULL DEFAULT '' COMMENT '说明',
+    `create_time` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+    PRIMARY KEY (`id`),
+    KEY `idx_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `t_task_log` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,

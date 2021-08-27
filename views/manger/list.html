@@ -22,7 +22,7 @@
 			</div>
 			
 			<div class="btn-group">
-			<a href="{{urlfor "MangerController.Add"}}" class="btn btn-large btn-info"><span class="icon-plus"></span> 新建分组</a>
+			<a href="{{urlfor "MangerController.Add"}}" class="btn btn-large btn-info"><span class="icon-plus"></span> 新建管理</a>
 			</div>
 			
 		</div>
@@ -43,7 +43,8 @@
 				<tr>
 					<td><input type="checkbox" name="ids" value="{{$v.Id}}" /></td>
 					<td class="center">{{$v.Id}}</td>
-					<td>{{$v.GroupName}}</td>
+					<td>{{$v.MangerName}}</td>
+					<td>{{$v.InboundType}}</td>
 					<td>{{$v.Description}}</td>
 					<td>
 						<a class="btn btn-info" href="{{urlfor "MangerController.Edit" "id" $v.Id}}">
@@ -75,10 +76,10 @@ $(function() {
 function batch(action) {
 	$(".alert").hide();
 	if ($("input[name='ids']:checked").size() < 1) {
-		$(".alert").text("请选择要操作的任务");
+		$(".alert").text("请选择要操作的项目");
 		$(".alert").show();
 	} else {
-		var url = "{{urlfor "MangerController.Batch"}}";
+		var url = '{{urlfor "MangerController.Batch"}}';
 		$.post(url + "?action=" + action, $("#form-list").serialize(), function(out) {
 			if (out.status != 0) {
 				$(".alert").text(out.msg);

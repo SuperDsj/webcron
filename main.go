@@ -39,7 +39,7 @@ func main() {
 	beego.Router("/help", &controllers.HelpController{}, "*:Index")
 	beego.AutoRouter(&controllers.TaskController{})
 	beego.AutoRouter(&controllers.GroupController{})
-	beego.AutoRouter(&controllers.GroupController{})
+	beego.AutoRouter(&controllers.MangerController{})
 
 	beego.BConfig.WebConfig.Session.SessionOn = true
 	beego.Run()

@@ -2,8 +2,8 @@ package jobs
 
 import (
 	"fmt"
-	"github.com/astaxie/beego"
 	"github.com/SuperDsj/webcron/app/models"
+	"github.com/astaxie/beego"
 	"os/exec"
 	"time"
 )

@@ -18,9 +18,9 @@ func (this *MangerController) List() {
 		page = 1
 	}
 
-	list, count := models.TaskGroupGetList(page, this.pageSize)
+	list, count := models.TaskMangerGetList(page, this.pageSize)
 
-	this.Data["pageTitle"] = "分组列表"
+	this.Data["pageTitle"] = "管理列表"
 	this.Data["list"] = list
 	this.Data["pageBar"] = libs.NewPager(page, int(count), this.pageSize, beego.URLFor("MangerController.List"), true).ToString()
 	this.display()
@@ -28,41 +28,41 @@ func (this *MangerController) List() {
 
 func (this *MangerController) Add() {
 	if this.isPost() {
-		group := new(models.TaskGroup)
-		group.GroupName = strings.TrimSpace(this.GetString("group_name"))
+		group := new(models.TaskManger)
+		group.MangerName = strings.TrimSpace(this.GetString("manger_name"))
 		group.UserId = this.userId
 		group.Description = strings.TrimSpace(this.GetString("description"))
 
-		_, err := models.TaskGroupAdd(group)
+		_, err := models.TaskMangerAdd(group)
 		if err != nil {
 			this.ajaxMsg(err.Error(), MSG_ERR)
 		}
 		this.ajaxMsg("", MSG_OK)
 	}
 
-	this.Data["pageTitle"] = "添加分组"
+	this.Data["pageTitle"] = "添加管理"
 	this.display()
 }
 
 func (this *MangerController) Edit() {
 	id, _ := this.GetInt("id")
 
-	group, err := models.TaskGroupGetById(id)
+	group, err := models.TaskMangerGetById(id)
 	if err != nil {
 		this.showMsg(err.Error())
 	}
 
 	if this.isPost() {
-		group.GroupName = strings.TrimSpace(this.GetString("group_name"))
+		group.MangerName = strings.TrimSpace(this.GetString("manger_name"))
 		group.Description = strings.TrimSpace(this.GetString("description"))
-		err := group.Update()
+		err := group.MangerUpdate()
 		if err != nil {
 			this.ajaxMsg(err.Error(), MSG_ERR)
 		}
 		this.ajaxMsg("", MSG_OK)
 	}
 
-	this.Data["pageTitle"] = "编辑分组"
+	this.Data["pageTitle"] = "编辑管理"
 	this.Data["group"] = group
 	this.display()
 }
@@ -81,7 +81,7 @@ func (this *MangerController) Batch() {
 		}
 		switch action {
 		case "delete":
-			models.TaskGroupDelById(id)
+			models.TaskMangerDelById(id)
 			models.TaskResetGroupId(id)
 		}
 	}

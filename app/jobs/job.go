@@ -3,9 +3,9 @@ package jobs
 import (
 	"bytes"
 	"fmt"
-	"github.com/astaxie/beego"
 	"github.com/SuperDsj/webcron/app/mail"
 	"github.com/SuperDsj/webcron/app/models"
+	"github.com/astaxie/beego"
 	"html/template"
 	"os/exec"
 	"runtime/debug"

@@ -49,9 +49,9 @@ $(function () {
 	$("form").submit(function () {
 		$(".alert").hide();
 		$("button[type='submit']").attr('disabled', true);
-		$.post('{{urlfor "GroupController.Edit"}}', $(this).serialize(), function (out) {
+		$.post('{{urlfor "MangerController.Edit"}}', $(this).serialize(), function (out) {
 			if (out.status == 0) {
-				window.location.href = '{{urlfor "GroupController.List"}}';
+				window.location.href = '{{urlfor "MangerController.List"}}';
 			} else {
 				$(".alert").text(out.msg);
 				$(".alert").show();
