@@ -40,6 +40,7 @@ func main() {
 	beego.AutoRouter(&controllers.TaskController{})
 	beego.AutoRouter(&controllers.GroupController{})
 	beego.AutoRouter(&controllers.MangerController{})
+	beego.AutoRouter(&controllers.GatewayController{})
 
 	beego.BConfig.WebConfig.Session.SessionOn = true
 	beego.Run()

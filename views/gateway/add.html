@@ -1,0 +1,92 @@
+<div class="row">
+<div class="span12">      		
+	   		
+	<div class="widget ">
+		<div class="widget-header">
+			<i class="icon-plus"></i>
+ 			<h3>添加网关</h3>
+		</div> <!-- /widget-header -->
+
+		<div class="widget-content">
+		
+		<div class="alert alert-danger hide" role="alert"></div>
+
+		<form id="add-task" action="{{urlfor "GatewayController.Add"}}" method="post" class="form-horizontal">
+			<fieldset>
+				
+				<div class="control-group">											
+					<label class="control-label" for="group_name">商务分组</label>
+					<div class="controls">
+						<input type="text" name="group_name" class="span6" id="group_name">
+					</div>				
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inbound_type">运营商类型</label>
+					<div class="controls">
+						<input type="text" name="inbound_type" class="span6" id="inbound_type">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inbound_name">网关名称</label>
+					<div class="controls">
+						<input type="text" name="inbound_name" class="span6" id="inbound_name">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inbound_local">落地号码</label>
+					<div class="controls">
+						<input type="text" name="inbound_local" class="span6" id="inbound_local">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inbound_sip">Sip指向</label>
+					<div class="controls">
+						<input type="text" name="inbound_sip" class="span6" id="inbound_sip">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="inbound_fs">FreeSwitch节点</label>
+					<div class="controls">
+						<input type="text" name="inbound_fs" class="span6" id="inbound_fs">
+					</div>
+				</div>
+				<div class="control-group">											
+					<label class="control-label" for="description">说明</label>
+					<div class="controls">
+						<textarea name="description" class="span6" id="description" rows="6"></textarea>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+		
+				<br />
+				
+					
+				<div class="form-actions">
+					<button type="submit" class="btn btn-primary">保 存</button> 
+					<a href="{{urlfor "GatewayController.List"}}" class="btn">返 回</a>
+				</div> <!-- /form-actions -->
+			</fieldset>
+		</form>
+
+		</div>
+	</div>
+</div>
+</div>
+
+<script>
+$(function () {
+	$("form").submit(function () {
+		$(".alert").hide();
+		$("button[type='submit']").attr('disabled', true);
+		$.post('{{urlfor "GatewayController.Add"}}', $(this).serialize(), function (out) {
+			if (out.status == 0) {
+				window.location.href = '{{urlfor "GatewayController.List"}}';
+			} else {
+				$(".alert").text(out.msg);
+				$(".alert").show();
+				$("button[type='submit']").attr('disabled', false);
+			}
+		}, "json");
+		return false;
+	});
+});
+</script>

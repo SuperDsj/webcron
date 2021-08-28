@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"github.com/SuperDsj/webcron/app/libs"
 	"github.com/SuperDsj/webcron/app/models"
 	"github.com/astaxie/beego"
@@ -9,45 +8,27 @@ import (
 	"strings"
 )
 
-type MangerController struct {
+type GatewayController struct {
 	BaseController
 }
 
-func (this *MangerController) List() {
+func (this *GatewayController) List() {
 	page, _ := this.GetInt("page")
 	if page < 1 {
 		page = 1
 	}
 
-	list, count := models.TaskMangerGetList(page, this.pageSize)
+	list, count := models.TaskGatewayGetList(page, this.pageSize)
 
 	this.Data["pageTitle"] = "分组列表"
 	this.Data["list"] = list
-	this.Data["pageBar"] = libs.NewPager(page, int(count), this.pageSize, beego.URLFor("MangerController.List"), true).ToString()
+	this.Data["pageBar"] = libs.NewPager(page, int(count), this.pageSize, beego.URLFor("GatewayController.List"), true).ToString()
 	this.display()
 }
 
-func (this *MangerController) Search() {
-	page, _ := this.GetInt("page")
-	if page < 1 {
-		page = 1
-	}
-	id, _ := this.GetInt("id")
-	fmt.Println(id)
-	groupname:= this.GetString("groupname","")
-	fmt.Println(groupname)
-	list, count := models.TaskMangerGetList(page, this.pageSize)
-
-	this.Data["pageTitle"] = "分组列表"
-	this.Data["list"] = list
-	this.Data["pageBar"] = libs.NewPager(page, int(count), this.pageSize, beego.URLFor("MangerController.List"), true).ToString()
-	this.display()
-}
-
-
-func (this *MangerController) Add() {
+func (this *GatewayController) Add() {
 	if this.isPost() {
-		group := new(models.TaskManger)
+		group := new(models.TaskGateway)
 		group.GroupName = strings.TrimSpace(this.GetString("group_name"))
 		group.InboundType = strings.TrimSpace(this.GetString("inbound_type"))
 		group.InboundName = strings.TrimSpace(this.GetString("inbound_name"))
@@ -57,7 +38,7 @@ func (this *MangerController) Add() {
 		group.UserId = this.userId
 		group.Description = strings.TrimSpace(this.GetString("description"))
 
-		_, err := models.TaskMangerAdd(group)
+		_, err := models.TaskGatewayAdd(group)
 		if err != nil {
 			this.ajaxMsg(err.Error(), MSG_ERR)
 		}
@@ -68,10 +49,10 @@ func (this *MangerController) Add() {
 	this.display()
 }
 
-func (this *MangerController) Edit() {
+func (this *GatewayController) Edit() {
 	id, _ := this.GetInt("id")
 
-	group, err := models.TaskMangerGetById(id)
+	group, err := models.TaskGatewayGetById(id)
 	if err != nil {
 		this.showMsg(err.Error())
 	}
@@ -96,7 +77,7 @@ func (this *MangerController) Edit() {
 	this.display()
 }
 
-func (this *MangerController) Batch() {
+func (this *GatewayController) Batch() {
 	action := this.GetString("action")
 	ids := this.GetStrings("ids")
 	if len(ids) < 1 {
@@ -110,7 +91,7 @@ func (this *MangerController) Batch() {
 		}
 		switch action {
 		case "delete":
-			models.TaskMangerDelById(id)
+			models.TaskGatewayDelById(id)
 			//models.TaskResetGroupId(id)
 		}
 	}

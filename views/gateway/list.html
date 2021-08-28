@@ -4,24 +4,13 @@
 	<div class="widget ">
 		<div class="widget-header">
 			<i class="icon-th-list"></i>
- 			<h3>管理列表</h3>
+ 			<h3>网关列表</h3>
 		</div> <!-- /widget-header -->
 
 		<div class="widget-content">
 		
 		<div class="alert hide" role="alert"></div>
-		<div>
-				<tr>
-					<td><input type="text" style="width: 80px;" name="ids" /></td>
-					<td><input type="text" style="width: 80px;" name="groupname" /></td>
-					<td><input type="text" style="width: 80px;" name="inboundtype" /></td>
-					<td><input type="text" style="width: 80px;" name="inboundname" /></td>
-					<td><input type="text" style="width: 80px;" name="inboundfs" /></td>
-					<td>
-						<a href="{{urlfor "MangerController.Search"}}" class="btn btn-info" >查 询</a>
-					</td>
-				</tr>
-		</div>
+		
 		<div class="btn-toolbar">
 		
 			<div class="btn-group btn-batch">
@@ -33,7 +22,7 @@
 			</div>
 			
 			<div class="btn-group">
-			<a href="{{urlfor "MangerController.Add"}}" class="btn btn-large btn-info"><span class="icon-plus"></span> 新建管理</a>
+			<a href="{{urlfor "GatewayController.Add"}}" class="btn btn-large btn-info"><span class="icon-plus"></span> 新建网关</a>
 			</div>
 			
 		</div>
@@ -44,8 +33,13 @@
 			<tr>
 				<th width="20"><input type="checkbox" name="chkall" value="1"></td>
 				<th width="40">ID</th>
-				<th>分组名称</th>
-				<th>类型</th>
+				<th>商务分组</th>
+				<th>运营商类型</th>
+				<th>网关名称</th>
+				<th>落地号码</th>
+				<th>Sip指向</th>
+				<th>FreeSwitch节点</th>
+				<th>创建人</th>
 				<th>描述</th>
 				<th width="100">操作</th>
 			</tr>
@@ -57,9 +51,14 @@
 					<td class="center">{{$v.Id}}</td>
 					<td>{{$v.GroupName}}</td>
 					<td>{{$v.InboundType}}</td>
+					<td>{{$v.InboundName}}</td>
+					<td>{{$v.InboundLocal}}</td>
+					<td>{{$v.InboundSip}}</td>
+					<td>{{$v.InboundFs}}</td>
+					<td>{{$v.UserId}}</td>
 					<td>{{$v.Description}}</td>
 					<td>
-						<a class="btn btn-info" href="{{urlfor "MangerController.Edit" "id" $v.Id}}">
+						<a class="btn btn-info" href="{{urlfor "GatewayController.Edit" "id" $v.Id}}">
 							<i class="icon-pencil icon-white"></i> 编辑
 						</a>
 										
@@ -88,10 +87,10 @@ $(function() {
 function batch(action) {
 	$(".alert").hide();
 	if ($("input[name='ids']:checked").size() < 1) {
-		$(".alert").text("请选择要操作的项目");
+		$(".alert").text("请选择要操作的任务");
 		$(".alert").show();
 	} else {
-		var url = '{{urlfor "MangerController.Batch"}}';
+		var url = "{{urlfor "GatewayController.Batch"}}";
 		$.post(url + "?action=" + action, $("#form-list").serialize(), function(out) {
 			if (out.status != 0) {
 				$(".alert").text(out.msg);

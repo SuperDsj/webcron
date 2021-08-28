@@ -75,6 +75,12 @@
 						<span>分组管理</span>
 					</a>  									
 				</li>
+				<li {{if eq .curController "gateway"}}class="active"{{end}}>
+					<a href="/gateway/list">
+						<i class="icon-folder-close"></i>
+						<span>网关管理</span>
+					</a>
+				</li>
 				<li {{if eq .curController "manger"}}class="active"{{end}}>
 				<a href="/manger/list">
 					<i class="icon-folder-close"></i>

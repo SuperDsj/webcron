@@ -5,7 +5,7 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type TaskManger struct {
+type TaskGateway struct {
 	Id          	int
 	UserId      	int
 	GroupName   	string
@@ -18,11 +18,11 @@ type TaskManger struct {
 	CreateTime  	int64
 }
 
-func (t *TaskManger) TableName() string {
-	return TableName("task_manger")
+func (t *TaskGateway) TableName() string {
+	return TableName("task_gateway")
 }
 
-func (t *TaskManger) Update(fields ...string) error {
+func (t *TaskGateway) Update(fields ...string) error {
 	if t.GroupName == "" {
 		return fmt.Errorf("组名不能为空")
 	}
@@ -32,15 +32,15 @@ func (t *TaskManger) Update(fields ...string) error {
 	return nil
 }
 
-func TaskMangerAdd(obj *TaskManger) (int64, error) {
+func TaskGatewayAdd(obj *TaskGateway) (int64, error) {
 	if obj.GroupName == "" {
 		return 0, fmt.Errorf("组名不能为空")
 	}
 	return orm.NewOrm().Insert(obj)
 }
 
-func TaskMangerGetById(id int) (*TaskManger, error) {
-	obj := &TaskManger{
+func TaskGatewayGetById(id int) (*TaskGateway, error) {
+	obj := &TaskGateway{
 		Id: id,
 	}
 	err := orm.NewOrm().Read(obj)
@@ -51,17 +51,17 @@ func TaskMangerGetById(id int) (*TaskManger, error) {
 	return obj, nil
 }
 
-func TaskMangerDelById(id int) error {
-	_, err := orm.NewOrm().QueryTable(TableName("task_manger")).Filter("id", id).Delete()
+func TaskGatewayDelById(id int) error {
+	_, err := orm.NewOrm().QueryTable(TableName("task_gateway")).Filter("id", id).Delete()
 	return err
 }
 
-func TaskMangerGetList(page, pageSize int) ([]*TaskManger, int64) {
+func TaskGatewayGetList(page, pageSize int) ([]*TaskGateway, int64) {
 	offset := (page - 1) * pageSize
 
-	list := make([]*TaskManger, 0)
+	list := make([]*TaskGateway, 0)
 
-	query := orm.NewOrm().QueryTable(TableName("task_manger"))
+	query := orm.NewOrm().QueryTable(TableName("task_gateway"))
 	total, _ := query.Count()
 	query.OrderBy("-id").Limit(pageSize, offset).All(&list)
 
