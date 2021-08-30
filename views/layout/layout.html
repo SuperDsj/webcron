@@ -18,6 +18,27 @@
 	<script src="/static/js/bootstrap.js"></script>
 	<script src="/static/js/base.js"></script>
 	<link href="/static/css/pages/dashboard.css" rel="stylesheet">
+	<script src="http://101.200.44.63:8090/static/js/gofly-front.js"></script>
+	<script>
+		GOFLY.init({
+			GOFLY_URL:"http://101.200.44.63:8090",//必填
+			GOFLY_KEFU_ID: "1001",//必填
+			GOFLY_ENT: "1",//必填
+			GOFLY_BTN_TEXT: "我们在线, 来聊聊吧",//非必填,按钮文字
+			GOFLY_AUTO_OPEN: true,//非必填,是否自动打开
+			GOFLY_WITHOUT_BTN:false,//非必填,是否显示右下角长条按钮
+			GOFLY_SIMPLE_ICON:true,//非必填,是否显示圆形按钮
+			GOFLY_EXTRA:{//非必填,绑定自有会员
+				"visitorId":"visito_1",//非必填,会员唯一ID
+				"visitorName":"董家大小姐",//非必填,会员名称
+				"visitorOrgID":"org_bsgs_001",
+				"visitorOrgName":"董氏有限责任公司",
+				"visitorSource":"app", //小程序，app、微信、web、邮箱、第三方
+				"visitorAvatar":"https://u7.53kf.com/img/upload/10055935/mobile/mobile_53kf_1470391483.jpg",//非必填,会员头像
+				"手机":"18500540000",//非必填,任何扩展字段
+			}
+		})
+	</script>
 </head>
 
 <body>
@@ -92,6 +113,12 @@
 						<i class="icon-question-sign"></i>
 						<span>使用帮助</span>
 					</a>  									
+				</li>
+				<li>
+				<a href="http://101.200.44.63:8090/chatIndex?kefu_id=1001&ent_id=1" target="_blank">
+					<i class="icon-question-sign"></i>
+					<span>在线咨询</span>
+				</a>
 				</li>
 			</ul>
 		</div> <!-- /container -->
